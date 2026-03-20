@@ -562,24 +562,118 @@ footer{
 .rv.d3{transition-delay:.3s;}
 .rv.on{opacity:1;transform:none;}
 
+/* ── HAMBURGER ── */
+.ham{
+  display:none;flex-direction:column;justify-content:center;
+  gap:5px;width:36px;height:36px;cursor:none;
+  background:none;border:none;padding:4px;
+}
+.ham span{
+  display:block;height:2px;background:var(--navy);
+  border-radius:2px;transition:all .3s;
+}
+.ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.ham.open span:nth-child(2){opacity:0;}
+.ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* Mobile nav drawer */
+.mobile-nav{
+  display:none;position:fixed;top:0;left:0;right:0;bottom:0;
+  background:rgba(255,255,255,.97);backdrop-filter:blur(20px);
+  z-index:400;flex-direction:column;align-items:center;justify-content:center;
+  gap:2.5rem;opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.mobile-nav.open{opacity:1;pointer-events:all;}
+.mobile-nav a{
+  font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;
+  color:var(--navy);text-decoration:none;letter-spacing:-1px;
+  transition:color .2s;
+}
+.mobile-nav a:hover{color:var(--blue);}
+.mobile-nav .m-cta{
+  font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;
+  padding:.8rem 2.5rem;background:var(--navy);color:#fff;
+  border-radius:10px;margin-top:.5rem;letter-spacing:.5px;
+}
+
+/* ── TABLET 1024px ── */
 @media(max-width:1024px){
-  nav{padding:.8rem 1.5rem;} .nav-links{gap:1.5rem;}
-  #hero{grid-template-columns:1fr;padding:6.5rem 1.5rem 4rem;}
+  nav{padding:.8rem 1.5rem;}
+  .nav-links{display:none;}
+  .ham{display:flex;}
+
+  #hero{grid-template-columns:1fr;padding:6.5rem 2rem 4rem;gap:2rem;}
   .hero-right{display:none;}
-  #about .about-wrap{grid-template-columns:1fr;}
-  .skills-grid{grid-template-columns:1fr 1fr;}
+  .hero-stats{gap:1.5rem;flex-wrap:wrap;}
+
+  #about .about-wrap{grid-template-columns:1fr;gap:3rem;}
+  .skills-grid{grid-template-columns:1fr 1fr;gap:1rem;}
   .proj-featured{grid-template-columns:1fr;}
-  .proj-grid{grid-template-columns:1fr 1fr;}
-  .why-grid{grid-template-columns:1fr 1fr;}
-  .contact-grid{grid-template-columns:1fr;}
-  .sec{padding:5rem 1.5rem;}
-  footer{padding:1.5rem;}
+  .pf-left{padding:2rem;}
+  .pf-right{padding:2rem;}
+  .proj-grid{grid-template-columns:1fr 1fr;gap:1rem;}
+  .why-grid{grid-template-columns:1fr 1fr;gap:1rem;}
+  .contact-grid{grid-template-columns:1fr;gap:3rem;}
+  .sec{padding:5rem 2rem;}
+  footer{padding:1.5rem 2rem;}
   .f-grid{grid-template-columns:1fr;}
 }
+
+/* ── MOBILE 640px ── */
 @media(max-width:640px){
-  .skills-grid,.proj-grid,.why-grid{grid-template-columns:1fr;}
-  .nav-links{display:none;}
-  h1.hero-name{font-size:3.2rem;}
+  nav{padding:.75rem 1.2rem;}
+
+  #hero{padding:5.5rem 1.2rem 3rem;}
+  h1.hero-name{font-size:2.8rem;letter-spacing:-1px;}
+  .hero-sub{font-size:.97rem;}
+  .hero-pill-text{font-size:.68rem;}
+  .cert-row{gap:.45rem;}
+  .chip{font-size:.7rem;padding:.35rem .7rem;}
+  .hero-actions{flex-direction:column;align-items:flex-start;}
+  .btn-solid,.btn-ghost{width:100%;justify-content:center;padding:.85rem 1.5rem;}
+  .hero-stats{gap:1.2rem;}
+  .hs-n{font-size:1.7rem;}
+
+  .sec{padding:4rem 1.2rem;}
+  .sec-title{font-size:1.8rem;letter-spacing:-.5px;}
+
+  #about .about-wrap{gap:2.5rem;}
+  .val-list{gap:.5rem;}
+  .val{padding:.8rem 1rem;}
+  .labs-flex{gap:.5rem;}
+  .lab-pill{font-size:.7rem;padding:.4rem .85rem;}
+
+  .skills-grid{grid-template-columns:1fr;gap:.9rem;}
+  .sk-card{padding:1.4rem;}
+
+  .proj-featured{border-radius:14px;}
+  .pf-left{padding:1.5rem;}
+  .pf-title{font-size:1.4rem;}
+  .pf-right{padding:1.5rem;}
+  .pf-desc{font-size:.9rem;}
+  .proj-grid{grid-template-columns:1fr;gap:1rem;}
+  .proj-card{border-radius:12px;}
+  .pc-body{padding:1.2rem;}
+
+  .why-grid{grid-template-columns:1fr;gap:1rem;}
+  .wc{padding:1.4rem;}
+  .wc-num{font-size:.6rem;}
+
+  .contact-grid{gap:2.5rem;}
+  .c-left h3{font-size:1.1rem;}
+  .c-links{gap:.55rem;}
+  .cl{padding:.75rem 1rem;}
+  .cl-icon{width:32px;height:32px;font-size:.8rem;}
+  .cl-val{font-size:.78rem;}
+  .form-card{padding:1.5rem;border-radius:14px;}
+  .f-grid{grid-template-columns:1fr;}
+  .fi,.ft{padding:.75rem .9rem;font-size:.88rem;}
+  .f-submit{font-size:.85rem;padding:.85rem;}
+
+  footer{flex-direction:column;text-align:center;gap:.6rem;padding:1.5rem 1.2rem;}
+  .ft-txt{font-size:.7rem;}
+
+  .mobile-nav{display:flex;}
 }
 </style>
 </head>
@@ -598,8 +692,21 @@ footer{
     <a href="#why">Why Me</a>
     <a href="#contact">Contact</a>
   </ul>
-  <a href="/cdn-cgi/l/email-protection#a8c9c6dbc0ddc5c9c6c2c0c9909d9e9c98e8cfc5c9c1c486cbc7c5" class="nav-cta">Hire Me</a>
+  <a href="mailto:anshumanjha85640@gmail.com" class="nav-cta">Hire Me</a>
+  <button class="ham" id="ham" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- Mobile Nav Drawer -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#about" onclick="closeNav()">About</a>
+  <a href="#skills" onclick="closeNav()">Skills</a>
+  <a href="#projects" onclick="closeNav()">Projects</a>
+  <a href="#why" onclick="closeNav()">Why Me</a>
+  <a href="#contact" onclick="closeNav()">Contact</a>
+  <a href="mailto:anshumanjha85640@gmail.com" class="m-cta" onclick="closeNav()">Hire Me</a>
+</div>
 
 <!-- ── HERO ── -->
 <section id="hero">
@@ -985,6 +1092,26 @@ footer{
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Hamburger menu
+const ham=document.getElementById('ham'),mNav=document.getElementById('mobileNav');
+ham.addEventListener('click',()=>{
+  ham.classList.toggle('open');
+  mNav.classList.toggle('open');
+  document.body.style.overflow=mNav.classList.contains('open')?'hidden':'';
+});
+function closeNav(){
+  ham.classList.remove('open');
+  mNav.classList.remove('open');
+  document.body.style.overflow='';
+}
+
+// Disable custom cursor on touch devices
+if('ontouchstart' in window){
+  document.getElementById('cur').style.display='none';
+  document.getElementById('cring').style.display='none';
+  document.body.style.cursor='auto';
+}
+
 // Cursor
 const cur=document.getElementById('cur'),ring=document.getElementById('cring');
 let mx=0,my=0,rx=0,ry=0;
